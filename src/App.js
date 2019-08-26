@@ -1,23 +1,19 @@
 import React from 'react';
+import { useMachine } from '@xstate/react';
 import logo from './logo.svg';
 import './App.css';
+import { machine } from './machine';
 
-function App() {
+const App = () => {
+  const [current, send] = useMachine(machine, { devTools: true });
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {current.value}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
